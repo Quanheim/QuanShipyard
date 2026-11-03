@@ -46,10 +46,15 @@ Keep the mounted boss trophy granting its forsaken power, with these changes (Qu
 1. **Its own cooldown, not the player's.** Using the trophy must not put your own forsaken power on cooldown, and
    your own power's cooldown must not block the trophy. The cooldown belongs to the boat's trophy (kept on the
    ship so every player sees the same timer, and it survives relogs).
-2. **Everyone nearby gets it, like the real power.** Activating the trophy gives the power to every player in range,
-   not just whoever activated it. That way the crew keeps the buff when the helmsman swaps.
+2. **The whole crew gets it, like the real power.** Activating the trophy gives the power to every player within
+   range, not just whoever activated it. That way the crew keeps the buff when the helmsman swaps. Crew who already
+   have it are **refreshed to the full duration** (as vanilla does), not skipped.
 3. **Still respects the active power.** You can't activate it while you already have that power's status effect on
    you.
+4. **Fully separate from your own power.** Using the trophy never sets it as your selected forsaken power, even if
+   you have none (LongshipUpgrades does this; we drop it).
+5. **Range covers the whole ship.** About **20 m** for the longship, **25-30 m** for the drakkar: set per ship type
+   and configurable; confirm the drakkar figure against its hull length in game.
 
 How LongshipUpgrades does it now (`ShipTrophyStand.cs`, checked 2 Nov 2026):
 - `DelayedPowerActivation` adds the status effect to `Player.m_localPlayer` only, and sets that player's
@@ -60,13 +65,8 @@ How LongshipUpgrades does it now (`ShipTrophyStand.cs`, checked 2 Nov 2026):
 
 How vanilla does it (`Player.ActivateGuardianPower`): `GetPlayersInRange(transform.position, 10f, ...)`, then
 `AddStatusEffect(m_guardianSE.NameHash(), resetTime: true)` on each player found, then sets only the activator's
-cooldown. Change 2 copies this: same 10 m range, centred on the trophy or the activator.
-
-Open questions:
-- Should players nearby who already have the power get it refreshed (vanilla does, `resetTime: true`), or be skipped?
-- Should we keep the "sets your selected power if you have none" side effect? Probably not, since the trophy is
-  now separate from your own power.
-- Range: 10 m like vanilla, or the whole ship (the drakkar is longer than the longship)?
+cooldown. Change 2 copies this (including `resetTime: true`, which gives the refresh), but with the ship-sized range
+from change 5 instead of 10 m, and without touching anyone's own cooldown.
 
 ## Open questions (for later)
 
