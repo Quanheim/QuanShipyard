@@ -13,6 +13,6 @@
   "namespace": "Quandru",
   "name": "QuanShipyard",
   "community": "valheim",
-  "installLocation": "undefined",
-  "categories": ["undefined"]
+  "installLocation": "both",
+  "categories": ["Vehicles", "Transportation", "Crafting", "Equipment", "Open Source", "Valheim 1.0"]
 }
