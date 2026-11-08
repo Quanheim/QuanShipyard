@@ -17,6 +17,10 @@ the design of the upgrades it emulates.
 **Licence:** LongshipUpgrades is released under **The Unlicense** (checked 2 Nov 2026), a public-domain dedication. We
 may fork it or reuse its code freely, with no attribution required; we credit shudnal anyway.
 
+**Open (Quandru, 8 Nov 2026):** this one does get credit: it adapts a unique idea, and we may end up using its code.
+Settle the wording once we know what we reuse: "idea and design" only, or code as well (then say which parts, in the
+README and the store README). Check it again before the first release.
+
 ## What LongshipUpgrades does (the starting point)
 
 From its Thunderstore page, 1.0.24:
